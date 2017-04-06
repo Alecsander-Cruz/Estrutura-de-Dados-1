@@ -60,11 +60,11 @@ int main(){
 	
 	// mostra carros
 	i = pilha.topo;
-	printf("%s", pilha.vetor[i].placa);
+	printf("A placa do terceiro carro eh: %s\n", pilha.vetor[i].placa);
 	//saida
 	
 	// mostra placa
-	printf("%d", pilha.topo + 1);
+	printf("Existem %d carros no beco!", pilha.topo + 1);
 	
 	return 0;
 }
