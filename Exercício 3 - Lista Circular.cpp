@@ -21,7 +21,7 @@ t_fila criar()
     fila.inicio = 0;
     fila.fim = -1;
     fila.quant_element = 0;
-    fila.max = 5;
+    fila.max = MAX;
 
 
     return fila;
