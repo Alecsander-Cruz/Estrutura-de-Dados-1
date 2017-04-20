@@ -11,6 +11,7 @@ typedef struct fila {
     int inicio; // posicao do primeiro elemento
     int fim;    // posicao do ultimo elemento
     int quant_element;    // numero de elementos da fila
+    int max;
 } t_fila;
 
 t_fila criar()
@@ -20,6 +21,7 @@ t_fila criar()
     fila.inicio = 0;
     fila.fim = -1;
     fila.quant_element = 0;
+    fila.max = 5;
 
 
     return fila;
@@ -42,16 +44,20 @@ t_elemento remover(t_fila * fila){
     return valor;
 }
 
-void exibir(t_fila * fila) {
+void mostrarFila(t_fila * fila){
+
+	int cont, i;
 	
-    int i;
-    
-    printf("\n ----- Exibindo fila -----\n");
-    printf("      Inicio da fila: %d\n", (fila->inicio + 1));
-    printf("      Fim    da fila: %d\n\n", (fila->fim + 1));
-    for (i=0 ; i<MAX ; i++) {
-        printf("Posicao [%d] :: %s\n", (i+1), fila->vetor[i].nome);
-    }
+	printf("\n ----- Exibindo fila -----\n\n");
+	for ( cont=0, i= fila->inicio; cont < fila->quant_element; cont++){
+
+		printf("    Posicao [%d] :: %s\n",(cont + 1),fila->vetor[i++]);
+
+		if (i == fila->max)
+			i=0;
+
+	}
+	printf("\n\n");
 }
 
 
@@ -63,7 +69,7 @@ void loopInserir(t_fila * fila){
 		printf("Insira um nome: ");
 		scanf("%s",dado.nome);
 		inserir(fila, dado);
-		exibir(fila);
+		mostrarFila(fila);
 		system("pause");
 		system("cls");	
 	}
@@ -77,7 +83,7 @@ int main(){
 	
 	for (i=0; i<3; i++){
 		remover(&mFila);
-		exibir(&mFila);
+		mostrarFila(&mFila);
 		system("pause");
 		system("cls");
 	}
