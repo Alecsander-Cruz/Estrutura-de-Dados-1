@@ -42,7 +42,7 @@ t_elemento remover(t_fila * fila){
     return valor;
 }
 
-void exibir(t_fila * fila, int j) {
+void exibir(t_fila * fila) {
 	
     int i;
     
@@ -51,23 +51,9 @@ void exibir(t_fila * fila, int j) {
     printf("      Fim    da fila: %d\n\n", (fila->fim + 1));
     for (i=0 ; i<MAX ; i++) {
         printf("Posicao [%d] :: %s\n", (i+1), fila->vetor[i].nome);
-        if (j==i){
-        	break;
-		}
     }
 }
 
-void exibir1(t_fila * fila) {
-	
-    int i;
-    
-    printf("\n ----- Exibindo fila -----\n");
-    printf("      Inicio da fila: %d\n", (fila->inicio + 1));
-    printf("      Fim    da fila: %d\n\n", (fila->fim + 1));
-    for (i=0 ; i<MAX ; i++) {
-        printf("Posicao [%d] :: %s\n", (i+1), fila->vetor[i].nome);
-    }
-}
 
 void loopInserir(t_fila * fila){
 	
@@ -77,7 +63,7 @@ void loopInserir(t_fila * fila){
 		printf("Insira um nome: ");
 		scanf("%s",dado.nome);
 		inserir(fila, dado);
-		exibir(fila, i);
+		exibir(fila);
 		system("pause");
 		system("cls");	
 	}
@@ -91,7 +77,7 @@ int main(){
 	
 	for (i=0; i<3; i++){
 		remover(&mFila);
-		exibir1(&mFila);
+		exibir(&mFila);
 		system("pause");
 		system("cls");
 	}
