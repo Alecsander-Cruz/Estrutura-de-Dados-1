@@ -11,23 +11,20 @@ typedef struct fila {
     int inicio; // posicao do primeiro elemento
     int fim;    // posicao do ultimo elemento
     int quant_element;    // numero de elementos da fila
-    int max;
 } t_fila;
 
-t_fila criar()
+t_fila criar()                   // funçao do tipo T_FILA usada para criar e inicializar 
 {
     t_fila fila = {""};
 
     fila.inicio = 0;
     fila.fim = -1;
     fila.quant_element = 0;
-    fila.max = MAX;
-
 
     return fila;
 }
 
-void inserir (t_fila * fila, t_elemento valor){
+void inserir(t_fila * fila, t_elemento valor){
 
     (fila->quant_element)++;
     fila->fim = (fila->fim + 1) % MAX;
@@ -44,24 +41,27 @@ t_elemento remover(t_fila * fila){
     return valor;
 }
 
-void mostrarFila(t_fila * fila){
+void mostrarFila(t_fila * fila){  // Função que printa a lista. Dois contadores são usados:
+								  // CONT : contador usado para controlar o loop for
+								  // i    : contador usado para controlar as posiçoes do T_ELEMENTO VETOR
 
 	int cont, i;
+	i= fila->inicio;
 	
 	printf("\n ----- Exibindo fila -----\n\n");
-	for ( cont=0, i= fila->inicio; cont < fila->quant_element; cont++){
+	for ( cont=0; cont < fila->quant_element; cont++){   // o loop só será executado enquanto o contador CONT for menor que a quantidade
+ 														 // de espaços preenchidos na fila.
+		printf("    Nome: %s\n", fila->vetor[i++]);
 
-		printf("    Posicao [%d] :: %s\n",(cont + 1),fila->vetor[i++]);
-
-		if (i == fila->max)
-			i=0;
+		if (i == MAX)             // condição usada para fazer o "i" zerar ao se igualar ao número maximo de espaços da fila,
+			i=0;                  // fazendo com que continue a printar os nomes restantes da fila.
 
 	}
 	printf("\n\n");
 }
 
 
-void loopInserir(t_fila * fila){
+void loopInserir(t_fila * fila){  // loop usado para inserir 4 nomes na fila.
 	
 	t_elemento dado;
 	int i=0;
@@ -81,7 +81,7 @@ int main(){
 	t_fila mFila = criar();
 	loopInserir(&mFila);
 	
-	for (i=0; i<3; i++){
+	for (i=0; i<3; i++){        // loop usado para remover 3 nomes da fila.
 		remover(&mFila);
 		mostrarFila(&mFila);
 		system("pause");
