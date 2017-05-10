@@ -1,0 +1,32 @@
+(a (b) (c (d(g)(h)) (e) (f (i)) ) )
+
+
+
+nos folhas - 	B, E, G, H, I
+
+GRAU - A(2), B(0), C (3), D(2), E(0), F(1), G(0), H(0), I(0) - quantidade de filhos
+
+GRAU DA ARVORE - 3 - maior grau da arvore
+
+ANCESTRAL B - A(PAI)
+
+ANCESTRAL G - D(PAI), C(AVO), A(BISAVO)
+
+ANCESTRAL I - F(PAI), C(AVO), A(BISAVO)
+
+DESCENDENTE DE D - G(FILHO), H(FILHO)
+
+NIVEL DE A - 0
+
+NIVEL DE F - 2
+
+ALTURA DA ARVORE - 3
+
+
+
+PRE ORDEM - A, X, Y, Z, T, F, B, M, D, E, L
+
+IN ORDEM - X, Z, T, Y, F, A, M, B, D, L, E
+
+POS ORDEM - T, Z, F, Y, X, M, L, E, D, B, A
+
