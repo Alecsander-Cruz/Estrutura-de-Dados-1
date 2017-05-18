@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct elemento{
+	char nome[100];
+}t_elemento;
+
+typedef struct no{
+	struct no *esquerdo;
+	t_elemento dado;
+	struct no *direito;
+}t_no;
+
+typedef t_no *t_arvore;
+
+
+t_no * criar ()
+{
+    t_no * no = (t_no*) malloc(sizeof(t_no));
+
+    if (no)
+        no->esq = no->dir = NULL;
+
+    return no;
+}
+
+
+int insereRaiz(t_arvore* tree, t_elemento dado)
+{
+    t_no* novo;
+    if (*tree != NULL)
+        return 0; // erro: ja existe raiz
+    novo = criar();
+    if (novo == NULL)
+        return 0; // erro: memoria insuficiente
+    novo->dado = dado;
+    *tree = novo;
+    return 1;
+}
+
+
+int compara(t_elemento d1, t_elemento d2){
+	return (strcmp(d1.nome, d2.nome));
+}
+
+
+t_no * busca(t_arvore tree, t_elemento dado)
+{
+    t_no* achou;
+    if (tree == NULL)
+        return NULL;
+    if (compara(tree->dado, dado)==0)
+        return tree;
+
+    achou = busca(tree->esq, dado);
+
+    if (achou == NULL)
+        achou = busca(tree->dir, dado);
+
+    return achou;
+}
+
+
+int insereDireita(t_arvore tree, t_elemento pai, t_elemento filho)
+{
+    t_no * f, *p, *novo;
+    // verifica se o elemento ja nao existe
+    f = busca(tree,filho);
+    if (f != NULL)
+        return 0; // erro: dado ja existente
+
+    // busca o pai e verifica se ja nao possui filho direito
+    p = busca(tree,pai);
+    if (p == NULL)
+        return 0; // erro: pai nao encontrado
+    if (p->dir != NULL) return 0; // erro: ja existe filho direito
+
+    novo = criar();
+    if (novo == NULL)
+        return 0; // erro: memoria insuficiente
+
+    novo->dado = filho;
+    p->dir = novo;
+    return 1;
+}
+
+
+int insereEsquerda(t_arvore tree, t_elemento pai, t_elemento filho)
+{
+    t_no * f, *p, *novo;
+    // verifica se o elemento ja nao existe
+    f = busca(tree,filho);
+    if (f != NULL)
+        return 0; // erro: dado ja existente
+
+    // busca o pai e verifica se ja nao possui filho direito
+    p = busca(tree,pai);
+    if (p == NULL)
+        return 0; // erro: pai nao encontrado
+    if (p->esq != NULL) return 0; // erro: ja existe filho direito
+
+    novo = criar();
+    if (novo == NULL)
+        return 0; // erro: memoria insuficiente
+
+    novo->dado = filho;
+    p->esq = novo;
+    return 1;
+}
+
+
+int main(){
+
+	t_arvore arv = NULL;
+	t_elemento dado1 = {"box"}, dado2 = {"caixa"};
+	
+	printf("[%p]\t", &arv);
+	printf("[%p]\n", arv);
+	insereRaiz(&arv, dado1);
+	printf("[%p]\t", &arv);
+	printf("[%p]\n", arv);
+	
+	
+}
